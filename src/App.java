@@ -59,7 +59,7 @@ public class App {
             completarTarefa();
         }
         limpaTela();
-        System.out.println("Item comcluido com sucesso");
+        System.out.println("Item comcluido com sucesso!");
         voltaMenu();
     }
     public static void excluirTarefa() throws Exception {
