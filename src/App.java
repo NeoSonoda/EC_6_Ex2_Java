@@ -19,6 +19,7 @@ public class App {
         System.out.println("2 - Completar tafera");
         System.out.println("3 - Excluir tarefa");
         System.out.println("4 - Listar tarefas");
+        System.out.println("5 - Fechar aplicação");
 
         String resposta = System.console().readLine();
 
@@ -29,7 +30,12 @@ public class App {
         if(resposta.intern() == "3" )
             excluirTarefa();
         if(resposta.intern() == "4" )
-            adicionarTarefa();
+        {
+            listarTarefa();
+            voltaMenu();
+        }
+        if(resposta.intern() == "5" )
+        excluirTarefa();
     }
     public static void adicionarTarefa() throws Exception {
         limpaTela();
@@ -69,9 +75,9 @@ public class App {
         System.out.println("Digite o numero do item que voce quer excluir");
         var resposta = System.console().readLine();
         System.out.println("Deseja mesmo excluir o item " + resposta + "? y/n");
-        resposta = System.console().readLine();
+        var resposta2 = System.console().readLine();
         
-        if(resposta =="n")
+        if(resposta2.intern() =="n")
             excluirTarefa();
 
         try
@@ -89,16 +95,16 @@ public class App {
     public static void listarTarefa() throws Exception {
         limpaTela();
         var cont = 1;
-        do{
+        while(cont<=Tarefas.size()){
             System.out.println(cont +" " + Tarefas.get(cont-1));
             cont++;
-        }while(cont<=Tarefas.size());
+        };
     }
     public static void limpaTela() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }  
-    public static void voltaMenu() throws Exception {
+    public static void fechar() throws Exception {
         System.out.println("Deseja fechar a aplicação? y/n");
         String resposta = System.console().readLine();
         if(resposta.intern() == "y")
@@ -106,6 +112,13 @@ public class App {
         if(resposta.intern() == "n")
             menu();
 
-        voltaMenu();
+        limpaTela();
+        fechar();
+    }
+
+    public static void voltaMenu() throws Exception {
+        System.out.println("Aperte enter para voltar para o menu principal");
+        System.console().readLine();
+        menu();
     }
 }
