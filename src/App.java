@@ -20,6 +20,7 @@ public class App {
         System.out.println("3 - Excluir tarefa");
         System.out.println("4 - Listar tarefas");
         System.out.println("5 - Fechar aplicação");
+        System.out.println("");
 
         String resposta = System.console().readLine();
 
@@ -35,13 +36,15 @@ public class App {
             voltaMenu();
         }
         if(resposta.intern() == "5" )
-        excluirTarefa();
+        fechar();
     }
     public static void adicionarTarefa() throws Exception {
         limpaTela();
         System.out.println("Digite a tafera que voce quer adicionar na lista");
         System.out.println("");
         var tafera = System.console().readLine();
+        if(tafera.intern().length() < 1)
+            adicionarTarefa();
         Tarefas.add(Tarefas.size(),tafera.intern()  + " - em progresso");
         limpaTela();
         System.out.println("Item adicionado com sucesso!");
@@ -99,6 +102,8 @@ public class App {
             System.out.println(cont +" " + Tarefas.get(cont-1));
             cont++;
         };
+        if(Tarefas.size()==0)
+             System.out.println("Voce não possui taferas cadastradas");
     }
     public static void limpaTela() {  
         System.out.print("\033[H\033[2J");  
